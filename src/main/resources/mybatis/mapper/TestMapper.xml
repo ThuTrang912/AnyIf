@@ -5,6 +5,10 @@
 
 <mapper namespace="sk2a.hello.chann.dao.UserDao">
     <select id="getAllUsers" resultType="Map">
-        select * from user
+        SELECT * FROM user
+    </select>
+
+    <select id="getUserByUserLogin" parameterType="String" resultType="sk2a.hello.chann.domain.User">
+        SELECT * FROM user WHERE user_login = #{user_login}
     </select>
 </mapper>

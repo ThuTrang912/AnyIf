@@ -11,6 +11,7 @@ import java.util.Map;
 @Mapper
 public interface UserDao {
     List<User> getAllUsers();
+    User getUserByUserLogin(String user_login);
 
     @Select("SELECT * FROM user WHERE user_id=#{user_id}")
     default User selectUserById (@Param("user_id") Integer id){ return null;};

@@ -23,5 +23,6 @@ public class UserDaoImpl implements UserDao{
         return sqlSession.selectList(namespace + "getAllUsers");
     }
 
-
+    @Override
+    public User getUserByUserLogin(String user_login) { return sqlSession.selectOne(namespace + "getUserByUserLogin");}
 }
