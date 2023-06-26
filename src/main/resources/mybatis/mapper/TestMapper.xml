@@ -8,7 +8,12 @@
         SELECT * FROM user
     </select>
 
-    <select id="getUserByUserLogin" parameterType="String" resultType="sk2a.hello.chann.domain.User">
+    <select id="getUserByUserLogin" parameterType="String" resultType="User">
         SELECT * FROM user WHERE user_login = #{user_login}
     </select>
+
+    <insert id="insertUser" parameterType="User">
+        INSERT INTO user (user_login,password,user_name, address, tel, age, gender, profile)
+                    VALUES (#{user_login},#{password},#{user_name},#{address},#{tel},#{age},#{gender},#{profile} )
+    </insert>
 </mapper>

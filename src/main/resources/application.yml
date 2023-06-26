@@ -6,6 +6,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis:
+#  typeAliasesPackage: sk2a.hello.c
   mapper-locations: classpath:mybatis/mapper/**/*.xml
   config-location: classpath:mybatis-config.xml
 

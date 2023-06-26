@@ -3,8 +3,10 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
+        <typeAlias alias="User" type="sk2a.hello.chann.domain.User"/>
+        <typeAlias alias="Board" type="sk2a.hello.chann.domain.Board"/>
     </typeAliases>
     <mappers>
-        <mapper resource="mybatis/mapper/TestMapper.xml"/>
+<!--        <mapper resource="mybatis/mapper/TestMapper.xml"/>-->
     </mappers>
 </configuration>
