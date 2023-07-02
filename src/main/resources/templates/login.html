@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
-<h2>Login Form</h2>
-<form action="#" th:action="@{/login}" method="post">
-    <div>
-        <label for="user_login">Username:</label>
-        <input type="text" id="user_login" name="user_login" required/>
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required/>
-    </div>
-    <div>
-        <input type="submit" value="Login"/>
-    </div>
-    <p th:text="${error}" style="color: red"></p>
-</form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login</title>
+        <link rel="stylesheet" th:href="@{/css/login.css}">
+    </head>
+    <body>
+     <main>
+         <p class="logo">Any IF</p>
+        <form action="#" th:action="@{/login}" method="post">
+            <input type="text" placeholder="PASSWORD" id="user_login" name="user_login" required/>
+            <input type="password" placeholder="PASSWORD" id="password" name="password" required/>
+            <button type="submit" class="loginBtn" value="Login">login</button>
+            <p th:text="${error}" style="color: red"></p>
+        </form>
+         <button class="signin">会員登録</button>
+     </main>
+    </body>
 </html>
