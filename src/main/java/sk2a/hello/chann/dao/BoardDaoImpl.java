@@ -19,9 +19,9 @@ public class BoardDaoImpl implements BoardDao{
         return sqlSession.selectList(namespace + "getAllBoards");
     }
 
-//    @Override
-//    public List<Board> getSearchBoards(String search) {
-//        return sqlSession.selectList(namespace + "getSearchBoards", search);
-//    }
+    @Override
+    public List<Board> getSearchBoards(String search) {
+        return sqlSession.selectList(namespace + "getSearchBoards", search);
+    }
 
 }

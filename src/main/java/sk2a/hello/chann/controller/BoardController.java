@@ -28,13 +28,13 @@ public class BoardController {
         return board;
     }
 
-//    @ResponseBody
-//    @RequestMapping(value = "/board/search", method= RequestMethod.POST)
-//    public List<Board> getSearchBoards(@RequestParam String search){
-//        log.info("board search={}", search);
-//        List<Board> board = boardDao.getSearchBoards(search);
-//        return board;
-//    }
+    @ResponseBody
+    @RequestMapping(value = "/board/search", method= RequestMethod.POST)
+    public List<Board> getSearchBoards(@RequestParam String search){
+        log.info("board search={}", search);
+        List<Board> board = boardDao.getSearchBoards(search);
+        return board;
+    }
 
 
 

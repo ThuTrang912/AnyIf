@@ -4,26 +4,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="sk2a.hello.chann.dao.BoardDao">
-    <select id="getAllBoards" resultType="Board">
+    <resultMap id="allBoard" type="sk2a.hello.chann.domain.Board">
+        <result column="board_id" property="boardId"/>
+        <result column="title" property="title"/>
+        <result column="user_name" property="userName"/>
+        <result column="reg_date" property="regDate"/>
+    </resultMap>
+
+    <select id="getAllBoards" resultMap="allBoard">
         SELECT b.board_id, p.product_name AS title, u.user_name, p.reg_date
         FROM board AS b
             JOIN product AS p ON (b.product_id = p.product_id)
             JOIN user AS u ON (b.user_id = u.user_id);
     </select>
 
-<!--    <resultMap id="allBoard" type="sk2a.hello.chann.domain.Board">-->
-<!--        <result column="board_id" property="boardId"/>-->
-<!--        <result column="title" property="title"/>-->
-<!--        <result column="user_name" property="userName"/>-->
-<!--        <result column="reg_date" property="regDate"/>-->
-<!--    </resultMap>-->
 
-<!--    <select id="getSearchBoards" parameterType="String" resultMap="allBoard">-->
-<!--        SELECT b.board_id, p.product_name AS title, u.user_name, p.reg_date-->
-<!--        FROM board AS b-->
-<!--                 JOIN product AS p ON b.product_id = p.product_id-->
-<!--                 JOIN user AS u ON b.user_id = u.user_id-->
-<!--        WHERE p.product_name = #{search} OR u.user_name = #{search};-->
-<!--    </select>-->
+    <select id="getSearchBoards" parameterType="String" resultMap="allBoard">
+        SELECT b.board_id, p.product_name AS title, u.user_name, p.reg_date
+        FROM board AS b
+                 JOIN product AS p ON b.product_id = p.product_id
+                 JOIN user AS u ON b.user_id = u.user_id
+        WHERE p.product_name = #{search} OR u.user_name = #{search};
+    </select>
 
 </mapper>

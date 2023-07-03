@@ -8,5 +8,5 @@ import java.util.List;
 //@Mapper
 public interface BoardDao {
     List<Board> getAllBoards();
-//    List<Board> getSearchBoards(String search);
+    List<Board> getSearchBoards(String search);
 }
