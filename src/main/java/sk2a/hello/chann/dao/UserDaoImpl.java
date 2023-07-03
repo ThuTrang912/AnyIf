@@ -25,4 +25,9 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public User getUserByUserLogin(String user_login) { return sqlSession.selectOne(namespace + "getUserByUserLogin");}
+
+    @Override
+    public void insertUser(User user) { sqlSession.insert(namespace + "insertUser");}
+
+
 }

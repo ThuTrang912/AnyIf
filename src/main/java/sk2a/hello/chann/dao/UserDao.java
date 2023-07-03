@@ -13,14 +13,16 @@ public interface UserDao {
     List<User> getAllUsers();
     User getUserByUserLogin(String user_login);
 
+    void insertUser(User user);
+
     @Select("SELECT * FROM user WHERE user_id=#{user_id}")
     default User selectUserById (@Param("user_id") Integer id){ return null;};
 
-    @Insert("INSERT INTO user(user_login," +
-            " password, user_name, review, address," +
-            " tel, age, gender, profile) " +
-            "VALUE(#{user.user_login},#{user.password},#{user.user_name}," +
-            "#{user.review},#{user.address},#{user.tel},#{user.age},#{user.gender},#{user.profile})")
-    default void insertUser(@Param("user") User user){};
+//    @Insert("INSERT INTO user(user_login," +
+//            " password, user_name, review, address," +
+//            " tel, age, gender, profile) " +
+//            "VALUE(#{user.user_login},#{user.password},#{user.user_name}," +
+//            "#{user.review},#{user.address},#{user.tel},#{user.age},#{user.gender},#{user.profile})")
+//    default void insertUser(@Param("user") User user){};
 
 }

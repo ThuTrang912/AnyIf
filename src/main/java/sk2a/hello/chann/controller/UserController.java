@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import sk2a.hello.chann.dao.UserDao;
 import sk2a.hello.chann.domain.User;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -43,16 +44,32 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam("user_login") String user_login, @RequestParam("password") String password, Model model){
+    public String login(@RequestParam("user_login") String user_login, @RequestParam("password") String password, Model model, HttpSession session){
         User user = userDao.getUserByUserLogin(user_login);
+        log.info("loginUser={}", user);
         if(user != null && user.getPassword().equals(password)){
             model.addAttribute("user", user);
-            return "login_success";
+            // Lưu thông tin user vào session
+            session.setAttribute("user", user);
+            return "redirect:/home/" + user.getUser_login();
         }else{
             model.addAttribute("error", "Invalid username or password");
             return "login";
         }
     }
+
+    @GetMapping("/register")
+    public String showRegisterForm (Model model){
+        model.addAttribute("user" , new User());
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String register(@ModelAttribute("user") User user){
+        log.info("registerUser={}", user);
+        userDao.insertUser(user);
+        return "/login"; }
+
 
 
 
