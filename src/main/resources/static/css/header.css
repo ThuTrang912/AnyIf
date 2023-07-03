@@ -1,0 +1,131 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(233, 233, 233);
+  max-width: 100%;
+  height: auto;
+}
+
+.inner {
+  width: 80%;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+}
+
+header {
+  width: 100%;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+header .inner {
+  justify-content: space-between;
+}
+header .inner div {
+  text-align: center;
+  line-height: 2.5em;
+}
+header .inner .logo {
+  width: 5%;
+  height: inherit;
+  margin-right: -20px;
+}
+header .inner .search-box {
+  width: 78%;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(220, 220, 220);
+  border-radius: 8px;
+}
+header .inner .search-box input {
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+  outline: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  text-indent: 1em;
+  width: 90%;
+}
+header .inner .search-box button {
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+  outline: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 10%;
+}
+header .inner .login {
+  width: 5%;
+}
+header .inner .signin {
+  width: 5%;
+}
+header .inner .my-page {
+  width: 10%;
+  height: inherit;
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+}
+
+.modal-back {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: none;
+}
+
+.modal-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 1000;
+  border-radius: 20px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.modal-box p {
+  font-size: 100px;
+  font-weight: bolder;
+  display: inline-block;
+  height: 0px;
+  line-height: 10px;
+}
+.modal-box input {
+  width: 600px;
+  height: 60px;
+  background-color: black;
+  color: white;
+  font-size: 30px;
+}
+.modal-box img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  margin: 0px 10px 0px 10px;
+}
+.modal-box button {
+  width: 300px;
+  height: 60px;
+  font-size: 30px;
+}/*# sourceMappingURL=header.css.map */

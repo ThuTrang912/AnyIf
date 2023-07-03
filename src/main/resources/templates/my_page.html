@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/heade/header.css}" />
+    <link rel="stylesheet" th:href="@{/css/my_page.scss/my_page.css}" />
+    <script src="./index.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="inner">
+        <div class="logo">AFI</div>
+        <div class="search-box">
+          <input type="search" placeholder="Search in " /> <button>検索</button>
+        </div>
+        <div class="login">log-in</div>
+        <div class="signin">sign-in</div>
+        <div class="my-page">My-page</div>
+      </div>
+    </header>
+    <h1>My Page</h1>
+    <main>
+      <div class="inner">
+        <img src="/img/apple.png" alt="" class="profile-img" />
+        <div class="profile">
+          <p>name</p>
+          <p>藤田昇</p>
+          <p>生年月日</p>
+          <p>2023.06.26</p>
+        </div>
+      </div>
+      <div class="inner">
+        <div class="result">
+          <span class="result-star">★★★★★</span>
+        </div>
+      </div>
+
+      <div class="inner">
+        <button class="preButton">前</button>
+        <div class="product-list">
+          <img src="/img/apple.png" alt="" />
+          <img src="/img/camera.png" alt="" />
+          <img src="/img/apple.png" alt="" />
+          <img src="/img/camera.png" alt="" />
+          <img src="/img/apple.png" alt="" />
+          <img src="/img/camera.png" alt="" />
+          <img src="/img/apple.png" alt="" />
+          <img src="/img/camera.png" alt="" />
+          <img src="/img/apple.png" alt="" />
+          <img src="/img/camera.png" alt="" />
+          <img src="/img/apple.png" alt="" />
+          <img src="/img/camera.png" alt="" />
+          <img src="/img/apple.png" alt="" />
+        </div>
+        <button class="nextButton">次</button>
+      </div>
+    </main>
+
+    <footer>
+      <div class="inner">
+        <p>
+          このサイトはAFIによって作られ、みんなさんの安全対策及び、素早い安否登録を行えるため色んな情報を提供しています。
+          <br /><em>© KURLY CORP. ALL RIGHTS RESERVED</em>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

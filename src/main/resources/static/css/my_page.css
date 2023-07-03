@@ -1,0 +1,57 @@
+main {
+  width: 100%;
+}
+
+.inner {
+  margin-left: 10%;
+  justify-content: space-around;
+}
+
+.profile-img {
+  width: 20%;
+  height: 25%;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  background-color: aliceblue;
+}
+.profile p {
+  font-size: 20px;
+}
+
+.result {
+  margin-top: 10%;
+}
+
+.result-star {
+  font-size: 80px;
+  color: gray;
+}
+
+.product-list {
+  background-color: antiquewhite;
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+}
+.product-list img {
+  position: relative;
+  transition: transform 0.3s ease;
+  left: 0;
+  width: 120px;
+  height: 120px;
+}
+
+/* footer */
+footer {
+  margin-top: 20px;
+  padding: 20px 0 30px;
+  font-size: 15px;
+  line-height: 15px;
+  text-align: center;
+  color: #6a6a6a;
+  background-color: #243040;
+}/*# sourceMappingURL=my_page.css.map */

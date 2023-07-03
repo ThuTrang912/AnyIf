@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>XXXXXXXXXX</title>
+    <title>Home</title>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
-    <link rel="stylesheet" th:href="@{/css/Category.css}" />
+    <link rel="stylesheet" th:href="@{/css/category.css}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,10 +21,10 @@
       <header>
         <div class="inner">
           <div class="logo">AFI</div>
-          <div class="search-box">
-            <input type="search" placeholder="Search in " />
-            <button>検索</button>
-          </div>
+          <form th:action="@{/board/search}" method="POST" class="search-box">
+            <input type="search" name="search" placeholder="Search in " />
+            <button type="submit">検索</button>
+          </form>
           <div class="login">log-in</div>
           <div class="my-page">My-page</div>
         </div>
@@ -243,14 +243,14 @@
 
             <a href="http://www.google.com">
               <div class="card border-left-behind">
-                <div class="shadow" style="--url: url('./img/789.png')"></div>
+                <div class="shadow" style="--url: url('./images/789.png')"></div>
                 <div
                   class="image background"
-                  style="--url: url('./img/123.png')"
+                  style="--url: url('./images/123.png')"
                 ></div>
                 <div
                   class="image cutout"
-                  style="--url: url('./img/456.png')"
+                  style="--url: url('./images/456.png')"
                 ></div>
                 <div class="content">
                   <h2 id="Title">一般的なユーザー</h2>
@@ -287,7 +287,7 @@
   </body>
 
   <!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script> -->
-  <script src="./js/Slider.js"></script>
-  <script src="./js/Category.js"></script>
-  <script src="./js/Timer.js"></script>
+  <script src="./js/slider.js"></script>
+  <script src="./js/category.js"></script>
+  <script src="./js/timer.js"></script>
 </html>

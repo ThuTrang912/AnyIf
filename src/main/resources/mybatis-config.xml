@@ -4,7 +4,7 @@
 <configuration>
     <typeAliases>
         <typeAlias alias="User" type="sk2a.hello.chann.domain.User"/>
-<!--        <typeAlias alias="Board" type="sk2a.hello.chann.domain.Board"/>-->
+        <typeAlias alias="Board" type="sk2a.hello.chann.domain.Board"/>
     </typeAliases>
     <mappers>
         <mapper resource="mybatis/mapper/UserMapper.xml"/>
