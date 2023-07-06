@@ -4,12 +4,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import sk2a.hello.chann.dao.BoardDao;
 import sk2a.hello.chann.domain.Board;
+import sk2a.hello.chann.pagination.Page;
+import sk2a.hello.chann.service.BoardService;
 
 import java.util.List;
 
@@ -19,9 +18,10 @@ import java.util.List;
 public class BoardController {
 
     private final BoardDao boardDao;
+    private final BoardService boardService;
 
     @ResponseBody
-    @RequestMapping(value = "/board/list", method= RequestMethod.GET)
+    @GetMapping("/board/list")
     public List<Board> getAllBoards(Model model){
         log.info("board list");
         List<Board> board = boardDao.getAllBoards();
@@ -29,13 +29,20 @@ public class BoardController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/board/search", method= RequestMethod.POST)
-    public List<Board> getSearchBoards(@RequestParam String search){
+    @PostMapping("/board/search")
+    public List<Board> getBoardsBySearch(@RequestParam String search){
         log.info("board search={}", search);
-        List<Board> board = boardDao.getSearchBoards(search);
+        List<Board> board = boardDao.getBoardsBySearch(search);
         return board;
     }
 
+    @GetMapping("/board/{page}")
+    public String showBoardList(Model model, @PathVariable int page) {
+        log.info("page={}" , page);
+        int pageSize = 2;
+        Page<Board> boardPage = boardService.getBoardByPage(page, pageSize);
 
-
+        model.addAttribute("boardPage", boardPage);
+        return "board_page";
+    }
 }

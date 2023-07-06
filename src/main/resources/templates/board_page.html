@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <!-- Các thẻ meta, CSS và scripts -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Board Page</title>
+  <link rel="stylesheet" th:href="@{/css/board_page.css}">
+</head>
+<body>
+<!-- Hiển thị danh sách board -->
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>User Name</th>
+    <th>Registration Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="board : ${boardPage.data}">
+    <td th:text="${board.boardId}"></td>
+    <td th:text="${board.title}"></td>
+    <td th:text="${board.userName}"></td>
+    <td th:text="${board.regDate}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- Hiển thị phân trang -->
+<ul class="pagination">
+  <li th:class="${boardPage.currentPage == 1 ? 'disabled' : ''}">
+    <a th:href="@{/board/{page}(page=${boardPage.currentPage - 1})}">&lt;</a>
+  </li>
+
+  <li th:each="pageNumber : ${#numbers.sequence(1, boardPage.totalPages)}"
+      th:class="${pageNumber == boardPage.currentPage ? 'active' : ''}">
+    <a th:href="@{/board/{page}(page=${pageNumber})}" th:text="${pageNumber}"></a>
+  </li>
+
+  <li th:class="${boardPage.currentPage == boardPage.totalPages ? 'disabled' : ''}">
+    <a th:href="@{/board/{page}(page=${boardPage.currentPage + 1})}">&gt;</a>
+  </li>
+</ul>
+
+
+</body>
+</html>

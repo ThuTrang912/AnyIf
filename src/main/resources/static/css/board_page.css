@@ -1,0 +1,48 @@
+/* board_page.css */
+
+/* Các tùy chỉnh cho bảng */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Các tùy chỉnh cho phân trang */
+.pagination {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination li.disabled a,
+.pagination li.disabled span {
+    color: #999;
+    cursor: not-allowed;
+}
+
+.pagination li a {
+    display: block;
+    padding: 8px 12px;
+    background-color: #f2f2f2;
+    text-decoration: none;
+    color: #333;
+}
+
+.pagination li.active a {
+    background-color: #007bff;
+    color: #fff;
+}
