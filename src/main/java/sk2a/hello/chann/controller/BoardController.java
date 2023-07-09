@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import sk2a.hello.chann.dao.BoardDao;
 import sk2a.hello.chann.domain.Board;
 import sk2a.hello.chann.pagination.Page;
-import sk2a.hello.chann.service.BoardService;
+import sk2a.hello.chann.service.PageService;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import java.util.List;
 public class BoardController {
 
     private final BoardDao boardDao;
-    private final BoardService boardService;
+    private final PageService boardService;
 
     @ResponseBody
     @GetMapping("/board/list")
@@ -36,13 +36,22 @@ public class BoardController {
         return board;
     }
 
-    @GetMapping("/board/{page}")
-    public String showBoardList(Model model, @PathVariable int page) {
-        log.info("page={}" , page);
-        int pageSize = 2;
-        Page<Board> boardPage = boardService.getBoardByPage(page, pageSize);
 
-        model.addAttribute("boardPage", boardPage);
-        return "board_page";
-    }
+
+//    @GetMapping("/board/{page}")
+//    public String showBoardList(Model model, @PathVariable int page) {
+//        log.info("page={}", page);
+//        int pageSize = 12;
+//        Page<Board> boardPage = boardService.getBoardByPage(page, pageSize);
+//
+//        model.addAttribute("boardPage", boardPage);
+//        return "product_list";
+//    }
+//
+//    @ResponseBody
+//    @GetMapping("/api/board/{page}")
+//    public Page<Board> getBoardByPage(@PathVariable int page) {
+//        int pageSize = 12;
+//        return boardService.getBoardByPage(page, pageSize);
+//    }
 }
