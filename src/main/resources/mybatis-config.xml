@@ -5,9 +5,12 @@
     <typeAliases>
         <typeAlias alias="User" type="sk2a.hello.chann.domain.User"/>
         <typeAlias alias="Board" type="sk2a.hello.chann.domain.Board"/>
+        <typeAlias alias="Product" type="sk2a.hello.chann.pagination.Product"/>
     </typeAliases>
     <mappers>
         <mapper resource="mybatis/mapper/UserMapper.xml"/>
         <mapper resource="mybatis/mapper/BoardMapper.xml"/>
+        <mapper resource="mybatis/mapper/ProductMapper.xml"/>
+
     </mappers>
 </configuration>

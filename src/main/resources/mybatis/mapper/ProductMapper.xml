@@ -4,16 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="sk2a.hello.chann.dao.ProductDao">
-    <resultMap id="ProductMap" type="sk2a.hello.chann.pagination.Product">
+    <resultMap id="ProductMap" type="Product">
+        <result column="image_id" property="imageId"/>
         <result column="serverfilename" property="serverFileName"/>
         <result column="product_name" property="productName"/>
         <result column="detail" property="productDetail"/>
-        <result column="productCost" property="productCost"/>
+        <result column="cost" property="productCost"/>
         <result column="like_id" property="likeId"/>
     </resultMap>
 
     <select id="getAllProducts" resultMap="ProductMap">
-        SELECT i.image_id, p.product_name, p.detail, p.cost, l.like_id
+        SELECT i.image_id, i.serverfilename, p.product_name, p.detail, p.cost, l.like_id
         FROM product AS p
                  JOIN image AS i ON (p.product_id = i.product_id)
                  JOIN board AS b ON (p.product_id = b.product_id)
@@ -21,17 +22,17 @@
     </select>
 
 
-    <select id="getBoardsBySearch" parameterType="String" resultMap="ProductMap">
-        SELECT i.image_id, p.product_name, p.detail, p.cost, l.like_id
-        FROM product AS p
-                 JOIN image AS i ON p.product_id = i.product_id
-                 JOIN board AS b ON p.product_id = b.product_id
-                 JOIN liked AS l ON b.board_id = l.board_id
-        WHERE p.product_name LIKE CONCAT('%', #{search}, '%') OR u.user_name = CONCAT('%', #{search}, '%');
-    </select>
+<!--    <select id="getProductsBySearch" parameterType="String" resultMap="ProductMap">-->
+<!--        SELECT i.image_id, i.serverfilename, p.product_name, p.detail, p.cost, l.like_id-->
+<!--        FROM product AS p-->
+<!--                 JOIN image AS i ON p.product_id = i.product_id-->
+<!--                 JOIN board AS b ON p.product_id = b.product_id-->
+<!--                 JOIN liked AS l ON b.board_id = l.board_id-->
+<!--        WHERE p.product_name LIKE CONCAT('%', #{search}, '%') OR u.user_name = CONCAT('%', #{search}, '%');-->
+<!--    </select>-->
 
     <select id="getProductsByPage" resultMap="ProductMap">
-        SELECT i.image_id, p.product_name, p.detail, p.cost, l.like_id
+        SELECT i.image_id, i.serverfilename, p.product_name, p.detail, p.cost, l.like_id
         FROM product AS p
                  JOIN image AS i ON p.product_id = i.product_id
                  JOIN board AS b ON p.product_id = b.product_id

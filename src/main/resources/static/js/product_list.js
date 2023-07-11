@@ -1,35 +1,36 @@
 const listBox = document.querySelector(".list-box");
-let page = 1;
+let page = getPageFromURL(); // Lấy số trang từ URL
 let totalPages = 0;
 const itemsPerPage = 12;
 
 async function fetchData() {
   try {
-    const response = await fetch(`/board/${page}`);
+    const response = await fetch(`/api/product/${page}`);
     const data = await response.json();
 
-    totalPages = data.totalPages;
+    const currentPage = data.currentPage;
+    const totalPageCount = data.totalPages;
     const currentPageData = data.data;
     listBox.innerHTML = ""; // Clear the previous data
 
     currentPageData.forEach((item) => {
       listBox.innerHTML += `
                 <div class="item">
-                    <img src="/img/notebook.png" alt="" />
-                    <p class="name">${item.title}</p>
-                    <p class="location">${item.content}</p>
-                    <p class="price">Price</p>
+                    <img th:src="@{/images/${item.serverFileName}}" alt="" />
+                    <p class="name">${item.productName}</p>
+                    <p class="location">${item.productDetail}</p>
+                    <p class="price">${item.productCost}</p>
                 </div>
             `;
     });
 
-    updatePagination(); // Update the pagination links
+    updatePagination(currentPage, totalPageCount); // Update the pagination links
   } catch (error) {
     console.error(error);
   }
 }
 
-const updatePagination = () => {
+const updatePagination = (page, totalPages) => {
   let paginationHTML = "";
   let pageGroup = Math.ceil(page / 5);
   let last = pageGroup * 5;
@@ -76,7 +77,26 @@ function moveToPage(pageNum) {
   page = pageNum;
   window.scrollTo({ top: 0, behavior: "smooth" });
   fetchData();
+
+  const newUrl = `${window.location.origin}/product/${pageNum}`;
+  history.pushState({ page: pageNum }, "", newUrl);
 }
 
-updatePagination(); // Initial pagination setup
+// Hàm để lấy số trang từ URL
+function getPageFromURL() {
+  const urlParts = window.location.pathname.split("/");
+  const pageString = urlParts[urlParts.length - 1];
+  const page = parseInt(pageString);
+  return isNaN(page) ? 1 : page;
+}
+
+// Xử lý sự kiện popstate khi người dùng thay đổi trang bằng nút back/forward trong trình duyệt
+window.addEventListener("popstate", (event) => {
+  if (event.state && event.state.page) {
+    page = event.state.page;
+    fetchData();
+    updatePagination(page, totalPages);
+  }
+});
+
 fetchData(); // Fetch and display initial data

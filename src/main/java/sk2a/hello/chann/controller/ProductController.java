@@ -44,7 +44,7 @@ public class ProductController {
         Page<Product> productPage = pageService.getProductByPage(page, pageSize);
 
         model.addAttribute("productPage", productPage);
-        return "product_list";
+        return "/product_list";
     }
 
     @ResponseBody

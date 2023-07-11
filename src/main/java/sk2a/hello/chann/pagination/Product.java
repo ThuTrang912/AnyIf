@@ -4,14 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
+    private Integer imageId;
     private String serverFileName;
     private String productName;
     private String productDetail;
-    private double productCost;
-    private int likeId;
+    private BigDecimal productCost;
+    private Integer likeId;
     // Các thuộc tính khác của sản phẩm
 }

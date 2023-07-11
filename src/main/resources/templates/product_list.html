@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Board Page</title>
+  <title>Product Page</title>
   <!-- Add your CSS and JS files here -->
   <link rel="stylesheet" href="/Header&Footer/test.css" />
-  <link rel="stylesheet" href="../static/css/product_list.css" />
+  <link rel="stylesheet" th:href="@{/css/product_list.css}" />
   <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
@@ -19,7 +20,7 @@
           crossorigin="anonymous"
           defer
   ></script>
-  <script src="../static/js/product_list.js" defer></script>
+  <script th:src="@{/js/product_list.js}" defer></script>
 </head>
 <body>
 <header>
