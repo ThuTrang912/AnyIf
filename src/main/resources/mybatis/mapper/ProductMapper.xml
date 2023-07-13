@@ -13,35 +13,73 @@
         <result column="like_id" property="likeId"/>
     </resultMap>
 
-    <select id="getAllProducts" resultMap="ProductMap">
+    <select id="getProductsByPage" resultMap="ProductMap" parameterType="map">
         SELECT i.image_id, i.serverfilename, p.product_name, p.detail, p.cost, l.like_id
         FROM product AS p
-                 JOIN image AS i ON (p.product_id = i.product_id)
-                 JOIN board AS b ON (p.product_id = b.product_id)
-                 JOIN liked AS l ON (b.board_id = l.board_id);
+        JOIN image AS i ON p.product_id = i.product_id
+        JOIN board AS b ON p.product_id = b.product_id
+        JOIN liked AS l ON b.board_id = l.board_id
+        WHERE 1=1
+        <if test="category == null or category == ''">
+            AND 1=1
+        </if>
+        <if test="category == 'option1'">
+            AND p.category_id = 1
+        </if>
+        <if test="category == 'option2'">
+            AND p.category_id = 2
+        </if>
+        <if test="price == null or price == ''">
+            AND 1=1
+        </if>
+        <if test="price == 'price1'">
+            AND p.cost BETWEEN 1000 AND 10000
+        </if>
+        <if test="price == 'price2'">
+            AND p.cost BETWEEN 11000 AND 20000
+        </if>
+        <if test="time == null or time == ''">
+            AND 1=1
+        </if>
+        <if test="time == 'option1'">
+            ORDER BY p.reg_date DESC
+        </if>
+        <if test="time == 'option2'">
+            ORDER BY p.reg_date ASC
+        </if>
+        LIMIT #{startRow}, #{pageSize}
     </select>
 
-
-<!--    <select id="getProductsBySearch" parameterType="String" resultMap="ProductMap">-->
-<!--        SELECT i.image_id, i.serverfilename, p.product_name, p.detail, p.cost, l.like_id-->
-<!--        FROM product AS p-->
-<!--                 JOIN image AS i ON p.product_id = i.product_id-->
-<!--                 JOIN board AS b ON p.product_id = b.product_id-->
-<!--                 JOIN liked AS l ON b.board_id = l.board_id-->
-<!--        WHERE p.product_name LIKE CONCAT('%', #{search}, '%') OR u.user_name = CONCAT('%', #{search}, '%');-->
-<!--    </select>-->
-
-    <select id="getProductsByPage" resultMap="ProductMap">
-        SELECT i.image_id, i.serverfilename, p.product_name, p.detail, p.cost, l.like_id
-        FROM product AS p
-                 JOIN image AS i ON p.product_id = i.product_id
-                 JOIN board AS b ON p.product_id = b.product_id
-                 JOIN liked AS l ON b.board_id = l.board_id
-            LIMIT #{startRow}, #{pageSize};
-    </select>
-
-    <select id="getTotalProductCount" resultType="long">
-        SELECT COUNT(*) FROM product
+    <select id="getTotalProductCount" resultType="long" parameterType="map">
+        <![CDATA[
+    SELECT COUNT(*)
+    FROM product AS p
+             JOIN image AS i ON p.product_id = i.product_id
+             JOIN board AS b ON p.product_id = b.product_id
+             JOIN liked AS l ON b.board_id = l.board_id
+    WHERE 1=1
+    ]]>
+        <if test="category == null or category == ''">
+            AND 1=1
+        </if>
+        <if test="category == 'option1'">
+            AND p.category_id = 1
+        </if>
+        <if test="category == 'option2'">
+            AND p.category_id = 2
+        </if>
+        <if test="price == null or price == ''">
+            AND 1=1
+        </if>
+        <if test="price == 'price1'">
+            AND p.cost BETWEEN 1000 AND 10000
+        </if>
+        <if test="price == 'price2'">
+            AND p.cost BETWEEN 11000 AND 20000
+        </if>
+        <if test="time == null or time == ''">
+            AND 1=1
+        </if>
     </select>
 
 </mapper>

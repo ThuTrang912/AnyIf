@@ -4,39 +4,105 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="sk2a.hello.chann.dao.BoardDao">
-    <resultMap id="BoardMap" type="sk2a.hello.chann.domain.Board">
-        <result column="board_id" property="boardId"/>
-        <result column="title" property="title"/>
-        <result column="user_name" property="userName"/>
+    <resultMap id="BoardMap" type="Board">
+        <result column="serverfilename" property="serverFileName"/>
+        <result column="product_name" property="productName"/>
+        <result column="detail" property="productDetail"/>
+        <result column="cost" property="productCost"/>
+        <result column="like_id" property="likeId"/>
         <result column="reg_date" property="regDate"/>
     </resultMap>
 
-    <select id="getAllBoards" resultMap="BoardMap">
-        SELECT b.board_id, p.product_name AS title, u.user_name, p.reg_date
+    <select id="getBoardsByPage" resultMap="BoardMap" parameterType="java.util.Map">
+        SELECT i.serverfilename, p.product_name, p.detail, p.cost, l.like_id, p.reg_date
         FROM board AS b
-            JOIN product AS p ON (b.product_id = p.product_id)
-            JOIN user AS u ON (b.user_id = u.user_id);
+        JOIN porduct AS p ON b.product_id = p.product_id
+        JOIN image AS i ON b.product_id = i.product_id
+        JOIN liked AS l ON b.board_id = l.board_id
+        WHERE 1=1
+        <if test="category != null and category != ''">
+            <choose>
+                <when test="category == 'option1'">
+                    AND p.category_id = 1
+                </when>
+                <when test="category == 'option2'">
+                    AND p.category_id = 2
+                </when>
+            </choose>
+        </if>
+        <if test="price != null and price != ''">
+            <choose>
+                <when test="price == 'price1'">
+                    AND p.cost BETWEEN 1000 AND 10000
+                </when>
+                <when test="price == 'price2'">
+                    AND p.cost BETWEEN 11000 AND 20000
+                </when>
+            </choose>
+        </if>
+        <if test="time != null and time != ''">
+            <choose>
+                <when test="time == 'option1'">
+                    ORDER BY p.reg_date DESC
+                </when>
+                <when test="time == 'option2'">
+                    ORDER BY p.reg_date ASC
+                </when>
+            </choose>
+        </if>
+        <if test="search != null and search != ''">
+            AND p.product_name LIKE CONCAT('%', #{search}, '%')
+        </if>
+        GROUP BY p.product_id
+        LIMIT #{startRow}, #{pageSize}
+    </select>
+
+    <select id="getTotalBoardCount" resultType="long" parameterType="java.util.Map">
+        SELECT COUNT(*)
+        FROM (
+        SELECT p.product_id
+        FROM product AS p
+        JOIN image AS i ON p.product_id = i.product_id
+        JOIN board AS b ON p.product_id = b.product_id
+        JOIN liked AS l ON b.board_id = l.board_id
+        WHERE 1=1
+        <if test="category != null and category != ''">
+            <choose>
+                <when test="category == 'option1'">
+                    AND p.category_id = 1
+                </when>
+                <when test="category == 'option2'">
+                    AND p.category_id = 2
+                </when>
+            </choose>
+        </if>
+        <if test="price != null and price != ''">
+            <choose>
+                <when test="price == 'price1'">
+                    AND p.cost BETWEEN 1000 AND 10000
+                </when>
+                <when test="price == 'price2'">
+                    AND p.cost BETWEEN 11000 AND 20000
+                </when>
+            </choose>
+        </if>
+        <if test="time != null and time != ''">
+            <choose>
+                <when test="time == 'option1'">
+                    ORDER BY p.reg_date DESC
+                </when>
+                <when test="time == 'option2'">
+                    ORDER BY p.reg_date ASC
+                </when>
+            </choose>
+        </if>
+        <if test="search != null and search != ''">
+            AND p.product_name LIKE CONCAT('%', #{search}, '%')
+        </if>
+        GROUP BY p.product_id
+        ) AS subquery
     </select>
 
 
-    <select id="getBoardsBySearch" parameterType="String" resultMap="BoardMap">
-        SELECT b.board_id, p.product_name AS title, u.user_name, p.reg_date
-        FROM board AS b
-                 JOIN product AS p ON b.product_id = p.product_id
-                 JOIN user AS u ON b.user_id = u.user_id
-        WHERE p.product_name LIKE CONCAT('%', #{search}, '%') OR u.user_name = CONCAT('%', #{search}, '%')
-    </select>
-
-    <select id="getBoardsByPage" resultMap="BoardMap">
-        SELECT b.board_id, p.product_name AS title, u.user_name, p.reg_date
-        FROM board AS b
-                 JOIN product AS p ON b.product_id = p.product_id
-                 JOIN user AS u ON b.user_id = u.user_id
-        LIMIT #{startRow}, #{pageSize};
-    </select>
-
-    <select id="getTotalBoardCount" resultType="long">
-        SELECT COUNT(*) FROM board
-    </select>
 
 </mapper>

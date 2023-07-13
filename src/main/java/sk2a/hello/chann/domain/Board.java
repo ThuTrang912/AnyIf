@@ -4,14 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Board {
-    private Integer boardId;
-    private String title;
-    private String userName;
+    private String serverFileName;
+    private String productName;
+    private String productDetail;
+    private BigDecimal productCost;
+    private Integer likeId;
     private Date regDate;
 }

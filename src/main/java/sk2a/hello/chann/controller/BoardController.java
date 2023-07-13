@@ -10,48 +10,41 @@ import sk2a.hello.chann.domain.Board;
 import sk2a.hello.chann.pagination.Page;
 import sk2a.hello.chann.service.PageService;
 
-import java.util.List;
-
 @Controller
 @Slf4j
 @RequiredArgsConstructor
 public class BoardController {
 
     private final BoardDao boardDao;
-    private final PageService boardService;
+    private final PageService pageService;
 
-    @ResponseBody
-    @GetMapping("/board/list")
-    public List<Board> getAllBoards(Model model){
-        log.info("board list");
-        List<Board> board = boardDao.getAllBoards();
-        return board;
+    @GetMapping("/board/{page}")
+    public String showBoardList(
+            Model model,
+            @PathVariable int page,
+            @RequestParam(required = false) String search,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) String price,
+            @RequestParam(required = false) String time
+    ) {
+        log.info("page={}, search={}, category={}, price={}, time={}", page, search, category, price, time);
+        int pageSize = 4;
+        Page<Board> boardPage = pageService.getBoardByPage(page, pageSize, search, category, price, time);
+
+        model.addAttribute("boardPage", boardPage);
+        return "board_list"; // Return the name of the Thymeleaf template
     }
 
     @ResponseBody
-    @PostMapping("/board/search")
-    public List<Board> getBoardsBySearch(@RequestParam String search){
-        log.info("board search={}", search);
-        List<Board> board = boardDao.getBoardsBySearch(search);
-        return board;
+    @GetMapping("/api/board/{page}")
+    public Page<Board> getBoardByPage(
+            @PathVariable int page,
+            @RequestParam(required = false) String search,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) String price,
+            @RequestParam(required = false) String time
+    ) {
+        int pageSize = 4;
+        return pageService.getBoardByPage(page, pageSize, search, category, price, time);
     }
-
-
-
-//    @GetMapping("/board/{page}")
-//    public String showBoardList(Model model, @PathVariable int page) {
-//        log.info("page={}", page);
-//        int pageSize = 12;
-//        Page<Board> boardPage = boardService.getBoardByPage(page, pageSize);
-//
-//        model.addAttribute("boardPage", boardPage);
-//        return "product_list";
-//    }
-//
-//    @ResponseBody
-//    @GetMapping("/api/board/{page}")
-//    public Page<Board> getBoardByPage(@PathVariable int page) {
-//        int pageSize = 12;
-//        return boardService.getBoardByPage(page, pageSize);
-//    }
 }

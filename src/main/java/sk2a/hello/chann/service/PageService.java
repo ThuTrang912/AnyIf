@@ -2,25 +2,33 @@ package sk2a.hello.chann.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import sk2a.hello.chann.dao.BoardDao;
 import sk2a.hello.chann.dao.ProductDao;
-import sk2a.hello.chann.dao.ProductDao;
-import sk2a.hello.chann.pagination.Product;
+import sk2a.hello.chann.domain.Board;
 import sk2a.hello.chann.pagination.Page;
+import sk2a.hello.chann.pagination.Product;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class PageService {
-    private final ProductDao productDao;
+    private final BoardDao boardDao;
 
-    public Page<Product> getProductByPage(int page, int pageSize) {
+    public Page<Board> getBoardByPage(
+            int page,
+            int pageSize,
+            String search,
+            String category,
+            String price,
+            String time
+    ) {
         int startRow = (page - 1) * pageSize;
-        List<Product> data = productDao.getProductsByPage(startRow, pageSize);
-        long totalItems = productDao.getTotalProductCount();
+        List<Board> data = boardDao.getBoardsByPage(startRow, pageSize,search, category, price, time);
+        long totalItems = boardDao.getTotalBoardCount(search, category, price, time);
         int totalPages = (int) Math.ceil((double) totalItems / pageSize);
 
-        Page<Product> result = new Page<>();
+        Page<Board> result = new Page<>();
         result.setData(data);
         result.setCurrentPage(page);
         result.setTotalPages(totalPages);

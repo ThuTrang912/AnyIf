@@ -17,11 +17,11 @@ import java.util.Map;
 @Data
 public class TestController {
 
-    private final ProductDao productDao;
-
-    @GetMapping("/productTest")
-    public List<Product> test() {
-        List<Product> productsByPage = productDao.getProductsByPage(0, 12);
-        return productsByPage;
-    }
+//    private final ProductDao productDao;
+//
+//    @GetMapping("/productTest")
+//    public List<Product> test() {
+//        List<Product> productsByPage = productDao.getProductsByPage(0, 12);
+//        return productsByPage;
+//    }
 }
