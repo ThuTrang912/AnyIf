@@ -102,5 +102,4 @@
         GROUP BY p.product_id
         ) AS subquery
     </select>
-
 </mapper>

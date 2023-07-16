@@ -7,9 +7,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import sk2a.hello.chann.controller.TestInterceptor;
 import sk2a.hello.chann.interceptor.MyInterceptor;
 
-@Configuration
+//@Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
-    @Bean
+    //@Bean
     MyInterceptor myInterceptor(){
         return new MyInterceptor();
     }

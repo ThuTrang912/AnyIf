@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品一覧</title>
+  <link rel="stylesheet" href="./Scss/Product_List.css" />
+  <link rel="stylesheet" href="../Header_Scss/header.css">
+  <link rel="stylesheet" href="../Category/CategoryCSS.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./Product_List.js"></script>
+</head>
+<body>
+<!-- main page -->
+<main>
+  <!-- Header -->
+  <header>
+    <div class="inner">
+      <div class="logo"><a href="./main.html">AFI</a></div>
+      <div class="search-box">
+        <input type="search" id="searchInputHeader" placeholder="Search in " />
+        <button id="searchButton">検索</button>
+      </div>
+      <div id="HeaderUserName">
+        <p>UserName</p>
+      </div>
+      <div class="login">
+        <a href="../Login/Login.html">ログイン</a>
+      </div>
+      <div class="my-page">
+        <a href="#">会員登録</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="category-box">
+    <div class="category">
+      <select id="categorySelect">
+        <option value="">すべて</option>
+        <option value="option1">お手伝い</option>
+        <option value="option2">商品</option>
+      </select>
+
+      <select id="priceSelect">
+        <option value="">すべての価格</option>
+        <option value="price1">1~10</option>
+        <option value="price2">11~20</option>
+      </select>
+
+      <select id="timeSelect">
+        <option value="">すべての時間</option>
+        <option value="option1">最近順</option>
+        <option value="option2">古い順</option>
+      </select>
+      <button id="clearFiltersButton" class="ClearFilterBtn">Clear Filter</button>
+    </div>
+
+    <div class="category-search">
+      <input type="text" id="nameSearch" placeholder="Search in "/>
+      <button type="button">
+        <img src="/Team_02/HTML/Product_List/img/magnifying-glass.png" alt="" />
+      </button>
+    </div>
+  </div>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination"></ul>
+  </nav>
+  <div class="list-box">
+    <p class="title">TITLE</p>
+    <ul id="boardList"></ul>
+  </div>
+
+  <footer>
+    <div class="inner">
+      <p>
+        このサイトはAFIによって作られ、みんなさんの安全対策及び、素早い安否登録と人々が互いに助け合える場所を提供することを目指しています。
+        <em>© KURLY CORP. ALL RIGHTS RESERVED</em>
+      </p>
+    </div>
+  </footer>
+</main>
+
+<!-- Category Button -->
+<a href="#cd-nav" class="cd-nav-trigger">
+  <span class="cd-nav-icon"></span>
+  <svg width="54px" height="54px" viewBox="0 0 54 54">
+    <circle fill="transparent" stroke="#656e79" stroke-width="1" cx="27" cy="27" r="25"
+            stroke-dasharray="157 157" stroke-dashoffset="157"></circle>
+  </svg>
+</a>
+
+<!-- Category -->
+<div id="cd-nav" class="cd-nav">
+  <div class="cd-navigation-wrapper">
+    <div class="cd-half-block">
+      <div class="centered">
+        <!-- Title -->
+        <h1 id="CategoryTitle">
+          カテゴリー
+          <hr />
+        </h1>
+        <!-- カテゴリー　１ -->
+        <a href="../Product_List/Product_List.html">
+          <div class="card border-left-behind">
+            <div class="shadow" style="--url: url('./img/A_BG.png')"></div>
+            <div class="image background" style="--url: url('./img/A_02.png')"></div>
+            <div class="image cutout" style="--url: url('./img/A_01.png')"></div>
+            <div class="content">
+              <h2 id="Title">物資共有</h2>
+              <p id="STitle">近く住んでいる方に手伝う</p>
+            </div>
+          </div>
+        </a>
+        <!-- カテゴリー　２ -->
+        <a href="../Product_List/Product_List.html">
+          <div class="card border-left-behind">
+            <div class="shadow" style="--url: url('./img/B_BG.png')"></div>
+            <div class="image background" style="--url: url('./img/B_02.png')"></div>
+            <div class="image cutout" style="--url: url('./img/B_01.png')"></div>
+            <div class="content">
+              <h2 id="Title">お手伝い</h2>
+              <p id="STitle">自分からできないこと</p>
+            </div>
+          </div>
+        </a>
+        <!-- カテゴリー　３ -->
+        <a href="../Product_List/Product_List.html">
+          <div class="card border-left-behind">
+            <div class="shadow" style="--url: url('./img/C_BG.png')"></div>
+            <div class="image background" style="--url: url('./img/C_02.png')"></div>
+            <div class="image cutout" style="--url: url('./img/C_01.png')"></div>
+            <div class="content">
+              <h2 id="Title">記事</h2>
+              <p id="STitle">新しいお知らせの情報</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../Category/Category.js"></script>
+</body>
+</html>

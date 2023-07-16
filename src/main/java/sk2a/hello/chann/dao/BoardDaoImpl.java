@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import sk2a.hello.chann.domain.Board;
-import sk2a.hello.chann.pagination.Product;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,10 +11,11 @@ import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor
-public class BoardDaoImpl implements BoardDao{
+public class BoardDaoImpl implements BoardDao {
 
     private final SqlSession sqlSession;
-    private final static String namespace = "sk2a.hello.chann.dao.BoardDao.";
+    private static final String namespace = "sk2a.hello.chann.dao.BoardDao.";
+
     @Override
     public List<Board> getBoardsByPage(int startRow, int pageSize, String search, String category, String price, String time) {
         Map<String, Object> params = new HashMap<>();
@@ -37,6 +37,4 @@ public class BoardDaoImpl implements BoardDao{
         params.put("time", time);
         return sqlSession.selectOne(namespace + "getTotalBoardCount", params);
     }
-
-
 }

@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import sk2a.hello.chann.dao.BoardDao;
 import sk2a.hello.chann.domain.Board;
 import sk2a.hello.chann.pagination.Page;
 import sk2a.hello.chann.service.PageService;
@@ -15,7 +14,6 @@ import sk2a.hello.chann.service.PageService;
 @RequiredArgsConstructor
 public class BoardController {
 
-    private final BoardDao boardDao;
     private final PageService pageService;
 
     @GetMapping("/board/{page}")
@@ -32,7 +30,7 @@ public class BoardController {
         Page<Board> boardPage = pageService.getBoardByPage(page, pageSize, search, category, price, time);
 
         model.addAttribute("boardPage", boardPage);
-        return "board_list"; // Return the name of the Thymeleaf template
+        return "Product_List";
     }
 
     @ResponseBody
