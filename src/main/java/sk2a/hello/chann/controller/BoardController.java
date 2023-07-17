@@ -19,15 +19,24 @@ public class BoardController {
     @GetMapping("/board/{page}")
     public String showBoardList(
             Model model,
-            @PathVariable int page,
+            @PathVariable String page,
             @RequestParam(required = false) String search,
             @RequestParam(required = false) String category,
             @RequestParam(required = false) String price,
             @RequestParam(required = false) String time
     ) {
-        log.info("page={}, search={}, category={}, price={}, time={}", page, search, category, price, time);
+        int pageNumber;
+        try {
+            pageNumber = Integer.parseInt(page);
+        } catch (NumberFormatException e) {
+            // Xử lý khi giá trị "page" không phải là một số nguyên hợp lệ
+            // Ví dụ: Hiển thị thông báo lỗi hoặc chuyển hướng đến trang 404
+            return "error"; // Thay thế bằng tên view và logic xử lý của bạn
+        }
+
+        log.info("page={}, search={}, category={}, price={}, time={}", pageNumber, search, category, price, time);
         int pageSize = 4;
-        Page<Board> boardPage = pageService.getBoardByPage(page, pageSize, search, category, price, time);
+        Page<Board> boardPage = pageService.getBoardByPage(pageNumber, pageSize, search, category, price, time);
 
         model.addAttribute("boardPage", boardPage);
         return "Product_List";
@@ -36,13 +45,22 @@ public class BoardController {
     @ResponseBody
     @GetMapping("/api/board/{page}")
     public Page<Board> getBoardByPage(
-            @PathVariable int page,
+            @PathVariable String page,
             @RequestParam(required = false) String search,
             @RequestParam(required = false) String category,
             @RequestParam(required = false) String price,
             @RequestParam(required = false) String time
     ) {
+        int pageNumber;
+        try {
+            pageNumber = Integer.parseInt(page);
+        } catch (NumberFormatException e) {
+            // Xử lý khi giá trị "page" không phải là một số nguyên hợp lệ
+            // Ví dụ: Trả về một trang rỗng hoặc trả về lỗi JSON
+            return new Page<>(); // Thay thế bằng giá trị phù hợp trong trường hợp của bạn
+        }
+
         int pageSize = 4;
-        return pageService.getBoardByPage(page, pageSize, search, category, price, time);
+        return pageService.getBoardByPage(pageNumber, pageSize, search, category, price, time);
     }
 }

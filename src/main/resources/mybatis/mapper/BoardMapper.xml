@@ -22,31 +22,21 @@
         WHERE 1=1
         <if test="category != null and category != ''">
             <choose>
-                <when test="category == 'option1'">
+                <when test="category.equals('option1')">
                     AND p.category_id = 1
                 </when>
-                <when test="category == 'option2'">
+                <when test="category.equals('option2')">
                     AND p.category_id = 2
                 </when>
             </choose>
         </if>
         <if test="price != null and price != ''">
             <choose>
-                <when test="price == 'price1'">
+                <when test="price.equals('price1')">
                     AND p.cost BETWEEN 1000 AND 10000
                 </when>
-                <when test="price == 'price2'">
+                <when test="price.equals('price2')">
                     AND p.cost BETWEEN 11000 AND 20000
-                </when>
-            </choose>
-        </if>
-        <if test="time != null and time != ''">
-            <choose>
-                <when test="time == 'option1'">
-                    ORDER BY p.reg_date DESC
-                </when>
-                <when test="time == 'option2'">
-                    ORDER BY p.reg_date ASC
                 </when>
             </choose>
         </if>
@@ -54,7 +44,17 @@
             AND p.product_name LIKE CONCAT('%', #{search}, '%')
         </if>
         GROUP BY p.product_id
-        LIMIT #{startRow}, #{pageSize}
+        <choose>
+            <when test="time != null and time.equals('option1')">
+                ORDER BY p.reg_date DESC
+            </when>
+            <when test="time != null and time.equals('option2')">
+                ORDER BY p.reg_date ASC
+            </when>
+        </choose>
+        <if test="pageSize != null">
+            LIMIT #{startRow}, #{pageSize}
+        </if>
     </select>
 
     <select id="getTotalBoardCount" resultType="long" parameterType="java.util.Map">
@@ -68,31 +68,21 @@
         WHERE 1=1
         <if test="category != null and category != ''">
             <choose>
-                <when test="category == 'option1'">
+                <when test="category.equals('option1')">
                     AND p.category_id = 1
                 </when>
-                <when test="category == 'option2'">
+                <when test="category.equals('option2')">
                     AND p.category_id = 2
                 </when>
             </choose>
         </if>
         <if test="price != null and price != ''">
             <choose>
-                <when test="price == 'price1'">
+                <when test="price.equals('price1')">
                     AND p.cost BETWEEN 1000 AND 10000
                 </when>
-                <when test="price == 'price2'">
+                <when test="price.equals('price2')">
                     AND p.cost BETWEEN 11000 AND 20000
-                </when>
-            </choose>
-        </if>
-        <if test="time != null and time != ''">
-            <choose>
-                <when test="time == 'option1'">
-                    ORDER BY p.reg_date DESC
-                </when>
-                <when test="time == 'option2'">
-                    ORDER BY p.reg_date ASC
                 </when>
             </choose>
         </if>

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>商品一覧</title>
-  <link rel="stylesheet" href="./Scss/Product_List.css" />
+  <link rel="stylesheet" th:href="@{/css/Scss/Product_List.css}" />
   <link rel="stylesheet" href="../Header_Scss/header.css">
   <link rel="stylesheet" href="../Category/CategoryCSS.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="./Product_List.js"></script>
+  <script th:src="@{/js/Product_List.js}"></script>
 </head>
 <body>
 <!-- main page -->
@@ -131,8 +132,8 @@
             <div class="image background" style="--url: url('./img/C_02.png')"></div>
             <div class="image cutout" style="--url: url('./img/C_01.png')"></div>
             <div class="content">
-              <h2 id="Title">記事</h2>
-              <p id="STitle">新しいお知らせの情報</p>
+              <h2 id="Title">レッスン・教室</h2>
+              <p id="STitle">大人から子供まで</p>
             </div>
           </div>
         </a>
@@ -141,6 +142,5 @@
   </div>
 </div>
 
-<script src="../Category/Category.js"></script>
 </body>
 </html>
