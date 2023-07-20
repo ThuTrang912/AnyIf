@@ -13,34 +13,24 @@ import sk2a.hello.chann.service.PageService;
 @Slf4j
 @RequiredArgsConstructor
 public class BoardController {
-
     private final PageService pageService;
 
-    @GetMapping("/board/{page}")
+    @GetMapping("/board")
     public String showBoardList(
             Model model,
-            @PathVariable String page,
             @RequestParam(required = false) String search,
             @RequestParam(required = false) String category,
             @RequestParam(required = false) String price,
-            @RequestParam(required = false) String time
+            @RequestParam(required = false) String time,
+            @RequestParam(required = false, defaultValue = "1") int page // Add default value for the page parameter
     ) {
-        int pageNumber;
-        try {
-            pageNumber = Integer.parseInt(page);
-        } catch (NumberFormatException e) {
-            // Xử lý khi giá trị "page" không phải là một số nguyên hợp lệ
-            // Ví dụ: Hiển thị thông báo lỗi hoặc chuyển hướng đến trang 404
-            return "error"; // Thay thế bằng tên view và logic xử lý của bạn
-        }
-
-        log.info("page={}, search={}, category={}, price={}, time={}", pageNumber, search, category, price, time);
-        int pageSize = 4;
-        Page<Board> boardPage = pageService.getBoardByPage(pageNumber, pageSize, search, category, price, time);
+        int pageSize = 3;
+        Page<Board> boardPage = pageService.getBoardByPage(page, pageSize, search, category, price, time);
 
         model.addAttribute("boardPage", boardPage);
         return "Product_List";
     }
+
 
     @ResponseBody
     @GetMapping("/api/board/{page}")
@@ -55,12 +45,10 @@ public class BoardController {
         try {
             pageNumber = Integer.parseInt(page);
         } catch (NumberFormatException e) {
-            // Xử lý khi giá trị "page" không phải là một số nguyên hợp lệ
-            // Ví dụ: Trả về một trang rỗng hoặc trả về lỗi JSON
-            return new Page<>(); // Thay thế bằng giá trị phù hợp trong trường hợp của bạn
+            return new Page<>();
         }
 
-        int pageSize = 4;
+        int pageSize = 3;
         return pageService.getBoardByPage(pageNumber, pageSize, search, category, price, time);
     }
 }

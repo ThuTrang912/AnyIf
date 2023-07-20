@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +8,7 @@
   <link rel="stylesheet" th:href="@{/css/Scss/Product_List.css}" />
   <link rel="stylesheet" href="../Header_Scss/header.css">
   <link rel="stylesheet" href="../Category/CategoryCSS.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script th:src="@{/js/Product_List.js}"></script>
+
 </head>
 <body>
 <!-- main page -->
@@ -20,7 +19,7 @@
       <div class="logo"><a href="./main.html">AFI</a></div>
       <div class="search-box">
         <input type="search" id="searchInputHeader" placeholder="Search in " />
-        <button id="searchButton">検索</button>
+        <button id="">検索</button>
       </div>
       <div id="HeaderUserName">
         <p>UserName</p>
@@ -42,26 +41,28 @@
         <option value="option2">商品</option>
       </select>
 
-      <select id="priceSelect">
+      <select id="priceSelect" onchange="applyFilters()">
         <option value="">すべての価格</option>
         <option value="price1">1~10</option>
         <option value="price2">11~20</option>
       </select>
 
-      <select id="timeSelect">
+      <select id="timeSelect" onchange="applyFilters()">
         <option value="">すべての時間</option>
         <option value="option1">最近順</option>
         <option value="option2">古い順</option>
       </select>
-      <button id="clearFiltersButton" class="ClearFilterBtn">Clear Filter</button>
+      <button id="clearFiltersButton" class="ClearFilterBtn" onclick="clearFilters()">Clear Filter</button>
     </div>
 
+    <!-- ... -->
     <div class="category-search">
       <input type="text" id="nameSearch" placeholder="Search in "/>
-      <button type="button">
-        <img src="/Team_02/HTML/Product_List/img/magnifying-glass.png" alt="" />
-      </button>
+      <!-- Add the search button to trigger the search -->
+      <button type="button" id="searchButton">Search</button>
     </div>
+    <!-- ... -->
+
   </div>
 
   <nav aria-label="Page navigation example">
@@ -141,6 +142,9 @@
     </div>
   </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/Product_List.js"></script>
 
 </body>
 </html>
