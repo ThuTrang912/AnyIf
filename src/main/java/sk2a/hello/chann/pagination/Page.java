@@ -14,5 +14,6 @@ public class Page<T> {
         private int currentPage;
         private int totalPages;
         private int pageSize;
+        private int navSize;
         private long totalItems;
 }

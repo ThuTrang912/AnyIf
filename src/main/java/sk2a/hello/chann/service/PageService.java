@@ -13,7 +13,7 @@ import java.util.List;
 public class PageService {
     private final BoardDao boardDao;
 
-    public Page<Board> getBoardByPage(int page, int pageSize, String search, String category, String price, String time) {
+    public Page<Board> getBoardByPage(int page, int pageSize, int navSize, String search, String category, String price, String time) {
         int startRow = (page - 1) * pageSize;
         List<Board> data = boardDao.getBoardsByPage(startRow, pageSize, search, category, price, time);
         long totalItems = boardDao.getTotalBoardCount(search, category, price, time);
@@ -24,6 +24,7 @@ public class PageService {
         result.setCurrentPage(page);
         result.setTotalPages(totalPages);
         result.setPageSize(pageSize);
+        result.setNavSize(navSize);
         result.setTotalItems(totalItems);
 
         return result;

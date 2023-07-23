@@ -2,6 +2,7 @@ const listBox = document.querySelector(".list-box");
 const itemsPerPage = 12;
 let page = 1;
 let totalPages = 0;
+let navSize= 0;
 
 async function fetchData() {
   try {
@@ -32,17 +33,18 @@ async function fetchData() {
     }
 
     totalPages = data.totalPages; // Update the total number of pages
-    updatePagination(page, totalPages); // Update pagination links
+    navSize = data.navSize;
+    updatePagination(page, totalPages,navSize); // Update pagination links
   } catch (error) {
     // Error handling
     console.error(error);
   }
 }
 
-const updatePagination = (page, totalPages) => {
+const updatePagination = (page, totalPages,navSize) => {
   let paginationHTML = "";
-  let pageGroup = Math.ceil(page / 5);
-  let last = pageGroup * 5;
+  let pageGroup = Math.ceil(page / navSize);
+  let last = pageGroup * navSize;
 
   if (last >= totalPages) {
     last = totalPages;

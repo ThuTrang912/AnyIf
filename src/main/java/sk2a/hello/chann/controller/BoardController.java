@@ -25,7 +25,8 @@ public class BoardController {
             @RequestParam(required = false, defaultValue = "1") int page // Add default value for the page parameter
     ) {
         int pageSize = 3;
-        Page<Board> boardPage = pageService.getBoardByPage(page, pageSize, search, category, price, time);
+        int navSize = 5;
+        Page<Board> boardPage = pageService.getBoardByPage(page, pageSize,navSize, search, category, price, time);
 
         model.addAttribute("boardPage", boardPage);
         return "Product_List";
@@ -49,6 +50,7 @@ public class BoardController {
         }
 
         int pageSize = 3;
-        return pageService.getBoardByPage(pageNumber, pageSize, search, category, price, time);
+        int navSize = 5;
+        return pageService.getBoardByPage(pageNumber, pageSize,navSize, search, category, price, time);
     }
 }
