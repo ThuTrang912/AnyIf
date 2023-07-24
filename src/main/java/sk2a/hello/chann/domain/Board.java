@@ -17,4 +17,5 @@ public class Board {
     private BigDecimal productCost;
     private Integer likeId;
     private Date regDate;
+    private Integer status;
 }

@@ -11,10 +11,11 @@
         <result column="cost" property="productCost"/>
         <result column="like_id" property="likeId"/>
         <result column="reg_date" property="regDate"/>
+        <result column="status" property="status"/>
     </resultMap>
 
     <select id="getBoardsByPage" resultMap="BoardMap" parameterType="java.util.Map">
-        SELECT i.serverfilename, p.product_name, p.detail, p.cost, l.like_id, p.reg_date
+        SELECT i.serverfilename, p.product_name, p.detail, p.cost, l.like_id, p.reg_date, b.status
         FROM product AS p
         LEFT JOIN image AS i ON p.product_id = i.product_id
         LEFT JOIN board AS b ON p.product_id = b.product_id

@@ -2,7 +2,7 @@ const listBox = document.querySelector(".list-box");
 const itemsPerPage = 12;
 let page = 1;
 let totalPages = 0;
-let navSize= 0;
+let navSize = 0;
 
 async function fetchData() {
   try {
@@ -19,12 +19,21 @@ async function fetchData() {
 
     if (currentPageData.length > 0) {
       currentPageData.forEach((item) => {
+        let status = "";
+        if (item.status == 0){
+            status = "引取完了"
+        }else if(item.status == 1){
+          status = "販売中"
+        }else if(ite.status == 2){
+          status = "取引中"
+        }
         listBox.innerHTML += `
           <div class="item">
             <img src="/images/${item.serverFileName}" alt="" />
             <p class="name">${item.productName}</p>
             <p class="location">${item.productDetail}</p>
             <p class="price">${item.productCost}</p>
+            <p class="status">${status}</p>
           </div>
         `;
       });
@@ -34,14 +43,14 @@ async function fetchData() {
 
     totalPages = data.totalPages; // Update the total number of pages
     navSize = data.navSize;
-    updatePagination(page, totalPages,navSize); // Update pagination links
+    updatePagination(page, totalPages, navSize); // Update pagination links
   } catch (error) {
     // Error handling
     console.error(error);
   }
 }
 
-const updatePagination = (page, totalPages,navSize) => {
+const updatePagination = (page, totalPages, navSize) => {
   let paginationHTML = "";
   let pageGroup = Math.ceil(page / navSize);
   let last = pageGroup * navSize;
@@ -82,9 +91,9 @@ const updatePagination = (page, totalPages,navSize) => {
   </li>`;
 
   paginationHTML += `<li class="page-item">
-  <a class="page-link" href="#" aria-label="Next" onclick="moveToPage(${totalPages})">
-    <span aria-hidden="true">&gt;&gt;</span>
-  </a>
+    <a class="page-link" href="#" aria-label="Next" onclick="moveToPage(${totalPages})">
+      <span aria-hidden="true">&gt;&gt;</span>
+    </a>
   </li>`;
   document.querySelector(".pagination").innerHTML = paginationHTML;
 };
@@ -100,16 +109,20 @@ $(document).on("click", "#searchButton", function () {
   page = 1;
   fetchData();
 });
+
 $(document).on("change", "#categorySelect, #priceSelect, #timeSelect", function () {
   page = 1;
   fetchData();
 });
+
 $(document).on("click", "#clearFiltersButton", function () {
   $("#nameSearch").val("");
   $("#categorySelect").val("");
   $("#priceSelect").val("");
   $("#timeSelect").val("");
+  page = 1;
   fetchData();
 });
 
+// Initial fetch data on page load
 fetchData();
