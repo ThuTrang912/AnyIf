@@ -12,11 +12,12 @@ IntelliJを開いて Open → ダウンロードしたファイルのbuild.gradl
 
 先　「https://start.spring.io/」 ここで注入したDependenciesがちゃんと入ってるか確認する
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/73b6b6fa-eed0-4f88-a223-e93c69da9d4b/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/66f0a8e8-7649-4c25-bf30-61cad6a60c0e)
+
 
 ## プロジェクトの階層
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/937cf5a7-fec8-49b6-a5db-8f49568eb975/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/6c8526d4-d69f-4865-9ece-9a34c945189c)
 
 controller, domain, mapper, service パッケージを作った
 
@@ -24,19 +25,21 @@ resourcesの下にmybatisっていう名前でパッケージを作って、さ�
 
 多分みんなはapplication.propertiesだけ入ってるはず
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4bc899c0-d6ba-4346-bb86-c37b0d881b79/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/4664932d-a9c0-4424-acc0-c03a5e38b11d)
+
 
 application.propertiesは削除して new → file で application.yml を新しく作る
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/eb292f93-e224-4a68-adc7-89f95d1288a9/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/355018aa-9f4a-44c4-9212-feb554f327f7)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fba5e547-c9d0-4f0b-b1dc-9af2129e99b5/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/1e0191bc-b28e-4f22-a527-4af248ab0ed2)
 
 ### application.yml
 
 application.ymlを開いて下のように書き込む
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ac90a9e4-7cf8-452f-8e09-52ac737c191b/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/48ea3c49-8392-48a3-9dcb-70f06959585e)
+
 
 ```yaml
 url: jdbc:mysql://localhost:3306/データベース名前?characterEncoding=UTF-8 
@@ -59,31 +62,36 @@ mapper-locations: classpath:mybatis/mapper/*.xml
 // resourcesの下のmybatisの下のmapperのパッケージに入ってる全てのxmlファイル
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/974784f4-0134-4320-873c-1707808e93e4/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/fa175d6a-32ac-4386-8c4d-e9591b7d8dbf)
+
 
 mapperパッケージに UserDao Interfaceを作る
 
 ### UserDao.java
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/973a937c-b2a0-430c-b124-30520f99e3e7/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/651becb8-471c-4db2-966e-03ed0cc81b93)
+
 
 @Mapperを書いてイメージの通りにList<Map<String, Object>> users(); を書く
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a9c7b26c-ae8e-4695-9784-70a814f553bd/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/73a39ce1-4990-48d5-9978-34b45994262f)
+
 
 resources → mybatis → mapperパッケージにUserMapper.xmlを新しく作る
 
 ### UserMapper.xml
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/961b32dd-54e6-4ddc-892c-5abbaf4cf45e/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/ea067659-0509-4d5e-a917-f000cebc5115)
 
 上のイメージの通りに書くと　「 user 」 のところに赤線が引かれる
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7b76b4ef-192b-4914-bade-8c0f33476c2a/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/ba5e3b90-983d-4b4f-99e1-68639348cb42)
+
 
 IntelliJの右のところのDatabaseをクリックして DataSource → MySQL
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/832cd4fe-ac2b-4bf2-875c-258cac0426f0/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/274cd313-3729-4396-9d51-1633826c3ba2)
+
 
 UserとPasswordは　application.ymlに書いたやつと同じにする
 
@@ -91,31 +99,36 @@ Databaseは使いたいデータベース名を書く
 
 Test Connectionをクリックして繋がるか確認する
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7d06b334-0e71-44c6-bfa0-c6cb4428629d/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/a1d7aa12-770a-47df-8a96-3a2abdb01a29)
+
 
 Succeededが表示されたら　Apply → OK 
 
 こうやってもまだ赤線が残ってる
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c84d2578-2d4b-42d2-80b7-b5b2f3cf643a/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/8483cc47-f9e4-4b0d-8165-cbcde695ae54)
+
 
 マウスCursorをuserの上に置いて　window : alt + Ent  / mac : opt + Ent
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e626edbb-6ec2-453b-8b4c-d508703d3a21/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/33e053f3-16c8-4a16-b4ad-a6efba91de96)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7e21525f-d2c8-43f7-9b1e-d55b42e7a2cd/Untitled.png)
+
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/b8e65194-d4c1-47f5-a073-95266e7d1460)
+
 
 choose schemaからデータベース選択
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b903ec57-b858-469a-b238-8b32d18af78b/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/d1ea9645-6cde-4954-8dc8-899ca9d28f22)
+
 
 Data Source Propertiesクリック
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/739a5858-e6e5-4f77-97c5-609253791c3e/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/336009db-03bb-4cd7-b5d2-598b9fc7b1a4)
 
 使いたいデータベース選択 Apply - OK
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6f1103b4-b218-4159-9177-59893ba4c2ca/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/258d5e42-aafe-471f-93bb-7bc7a91b28b8)
 
 赤線がなくなった
 
@@ -123,27 +136,32 @@ controller → UserController を新しく作る
 
 ### UserController.java
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0c480228-7144-4810-b6eb-cc5252c3d1b2/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/a9d4016f-106d-4986-a9b7-223fe76605ae)
+
 
 実行してみよう〜！
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fc217821-aaa8-477e-8bfe-20c02f09f099/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/b3695a5b-769c-422b-9f51-de7350dd2bb7)
+
 
 エラーは出てないからBrowserを開いて　localhost:8080/hello を打つと
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e2125a86-d287-47b4-87f4-1a454e45c433/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/6ae0276f-f335-4a1f-8c95-da209f9f61e3)
+
 
 500エラーが出ちゃう
 
 理由は？
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a73503d8-04ee-4a97-bd15-954a58bbbfb0/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/87a8e12c-2b43-45d9-80ab-e923850ecac6)
+
 
 UserMapper.xmlの<select id=”getAllUsers” >と書いてあるから UserDaoのメソッド名も
 
 getAllUsersに変える
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ee0e3d81-dffb-4a53-b3ca-15c969069f3b/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/d28ef10b-c66c-41b5-a490-97713ab78f26)
+
 
 UserDao のメソッド名が　users() → getAllUsers(); に 
 
@@ -151,9 +169,11 @@ UserController　の users()メソッドの中のuserDao.users() → userDao.get
 
 これで実行してみると
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2e1e4b51-768c-4988-b67c-ca4535f55698/Untitled.png)
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/d9ad42d2-2981-4d4c-b74f-cf20f8839d82)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f510beb4-7105-43a5-b9b4-c19349192626/Untitled.png)
+
+![image](https://github.com/ThuTrang912/AnyIf/assets/129019073/57aeb213-7830-4477-ab41-1bb406a7d8e8)
+
 
 200番でデータベースからデータを持ってくることができた。
 
